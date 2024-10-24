@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Details</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #313131;
+      color: #ffffff;
+      font-family: 'Inter', serif;
+    }
+    a span {
+      font-family: "Bruno Ace", sans-serif;
+      font-size: 2rem;
+    }
+    .nav-link {
+      color: #ffffff !important;
+      margin-right: 15px;
+    }
+    .active {
+      font-weight: 700;
+    }
+    #gameThumbnail {
+      width: 100%; /* Responsive width */
+      max-height: 300px; /* Limit height */
+      object-fit: cover; /* Cover to maintain aspect ratio */
+    }
+    .details-container {
+      background-color: #1a1a1a;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .detail-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .detail-content {
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+    footer {
+      background-color: #1a1a1a;
+      padding: 40px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="index.html"><span class="ml-4">OG</strong></a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">STORE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="support.html">SUPPORT</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container h-auto">
+    <div class="row row-cols-1 row-cols-md-2" id="gameDetailsContainer">
+      <div class="col">
+        <div class="d-flex my-5 justify-content-center">
+          <img src="" class="rounded" id="gameThumbnail">
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex mt-5 flex-column">
+          <div>
+            <h1 id="gameName">Game Name</h1>
+            <p class="mt-3" id="gameDescription">Game Description</p>
+          </div>
+          <div>
+            <button class="bg-dark text-white py-2 px-5 rounded border-0">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Details Section -->
+    <div class="details-container">
+      <h4 class="detail-title">Game Details</h4>
+      <div class="detail-content">
+        <strong>Genre:</strong> <span id="gameGenre">Action</span>
+      </div>
+      <div class="detail-content">
+        <strong>Platform:</strong> <span id="gamePlatform">PC</span>
+      </div>
+      <div class="detail-content">
+        <strong>Release Date:</strong> <span id="gameReleaseDate">2023-01-01</span>
+      </div>
+      <div class="detail-content">
+        <strong>Developer:</strong> <span id="gameDeveloper">Game Developer</span>
+      </div>
+      <div class="detail-content">
+        <strong>Publisher:</strong> <span id="gamePublisher">Game Publisher</span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h5 class="mb-3">Ocean of Games</h5>
+        </div>
+        <div class="col">
+          <p class="font-weight-lighter">All Rights Reserved.</p>
+          <p class="font-weight-lighter">Bringing you the latest and greatest in gaming.</p>
+          <p class="font-weight-lighter">Contact: info@oceanofgames.com</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const apiUrl = 'https://www.freetogame.com/api/games';
+
+    // Function to fetch game details
+    async function fetchGameDetails(title) {
+      try {
+        const response = await fetch(apiUrl);
+        const games = await response.json();
+        const game = games.find(game => game.title === title); // Find the game by title
+        
+        if (game) {
+          document.getElementById('gameThumbnail').src = game.thumbnail;
+          document.getElementById('gameName').textContent = game.title;
+          document.getElementById('gameDescription').textContent = game.short_description;
+          
+          // Populate additional details
+          document.getElementById('gameGenre').textContent = game.genre || 'N/A';
+          document.getElementById('gamePlatform').textContent = game.platform || 'N/A';
+          document.getElementById('gameReleaseDate').textContent = game.release_date || 'N/A';
+          document.getElementById('gameDeveloper').textContent = game.developer || 'N/A';
+          document.getElementById('gamePublisher').textContent = game.publisher || 'N/A';
+        } else {
+          console.error('Game not found');
+        }
+      } catch (error) {
+        console.error('Error fetching game details:', error);
+      }
+    }
+
+    // Function to get query parameter from URL
+    function getQueryParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Fetch game details on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      const gameTitle = getQueryParameter('title');
+      if (gameTitle) {
+        fetchGameDetails(decodeURIComponent(gameTitle)); // Decode the title before fetching
+      }
+    });
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

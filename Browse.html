@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ocean of Games | Brows</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #313131;
+      color: #ffffff;
+      font-family: 'Inter', serif;
+    }
+    a span {
+      font-family: "Bruno Ace", sans-serif;
+      font-size: 2rem;
+    }
+    .nav-link {
+      color: #ffffff !important;
+      margin-right: 15px;
+    }
+    .active {
+      font-weight: 700;
+    }
+    h5 {
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+    p {
+      font-weight: 300;
+      font-size: 1rem;
+      margin-top: -10px;
+    }
+    .pagination {
+      padding: 10px; /* Optional: add some padding for spacing */
+      border-radius: 5px; /* Optional: add rounded corners */
+    }
+
+    .page-item .page-link {
+      color: #ffffff; /* Change link text color */
+      background-color: #1a1a1a;
+    }
+
+    .page-item .page-link:hover {
+      background-color: #313131; /* Change background on hover */
+    }
+    footer {
+      background-color: #1a1a1a;
+      padding: 40px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="index.html"><span class="ml-4">OG</strong></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">STORE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="support.html">SUPPORT</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Discover</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="Browse.html">Browse</a>
+        </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container h-auto section mt-4">
+    <div class="row row-cols-2 row-cols-md-4 " id="gamesContainer">
+      <!-- Game cards will be injected here -->
+    </div>
+    <nav class="d-flex justify-content-center" aria-label="Page navigation">
+      <ul class="pagination" id="paginationContainer">
+        <!-- Pagination buttons will be injected here -->
+      </ul>
+    </nav>
+  </div>
+
+  <footer class="mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h5 class="mb-3">Ocean of Games</h5>
+        </div>
+        <div class="col">
+          <p class="font-weight-lighter">All Rights Reserved.</p>
+          <p class="font-weight-lighter">Bringing you the latest and greatest in gaming.</p>
+          <p class="font-weight-lighter">Contact: info@oceanofgames.com</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script src="/js/api.js"></script>
+</body>
+</html>
